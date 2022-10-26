@@ -2,7 +2,7 @@ const net = require("net");
 
 // Establishes a connection with the game server
 const connect = function(ipAddress = "localhost") {
-  if(!ipAddress) {
+  if (!ipAddress) {
     ipAddress = "localhost";
   }
 
@@ -22,9 +22,13 @@ const connect = function(ipAddress = "localhost") {
     console.log(data);
   });
 
+  conn.on("connect", () => {
+    console.log(`Connection successfuly established with IP: ${ipAddress} on PORT: 50541`);
+    conn.write("Name: BOB");
+  });
+
   return conn;
 };
-
 
 
 module.exports = { connect };
