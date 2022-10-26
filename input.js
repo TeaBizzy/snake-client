@@ -3,6 +3,7 @@ let connection; // Stores our connection to the server so we can send it data fr
 let currentDirection;
 let currentInterval;
 let stdin;
+
 // Initializes capturing of user input
 const setupInput = function(conn) {
   stdin = process.stdin;
@@ -31,18 +32,19 @@ const movePlayer = function(newDirection) {
   currentInterval = setInterval(() => connection.write(`Move: ${currentDirection}`), 75);
 };
 
-
+// Sends a message to the server
 const sendMessage = function(data) {
   connection.write(`Say: ${data}`);
 };
 
 // Determines what to do with user input
 const handleUserInput = function(key) {
-  // If input is = "ctrl + c" kill the application.
+  // If input is = "ctrl + c" kill the application
   if (key === "\u0003") {
     process.exit();
   }
 
+  // Preset messages!
   if (key === "y") {
     sendMessage("Lets GOOOO!");
   }
@@ -54,6 +56,8 @@ const handleUserInput = function(key) {
   if (key === "u") {
     sendMessage("I'm coming for you!");
   }
+  // Preset messages end!
+  
   movePlayer(key);
 };
 
