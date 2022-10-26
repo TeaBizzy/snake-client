@@ -25,12 +25,6 @@ const connect = function(ipAddress = "localhost") {
   conn.on("connect", () => {
     console.log(`Connection successfuly established with IP: ${ipAddress} on PORT: 50541`);
     conn.write("Name: m8y");
-
-    setTimeout(() => conn.write("Move: up"), 50);
-    setTimeout(() => conn.write("Move: up"), 100);
-    setTimeout(() => conn.write("Move: up"), 150);
-    setTimeout(() => conn.write("Move: up"), 200);
-    
   });
   
 
