@@ -26,6 +26,11 @@ const connect = function(ipAddress = "localhost") {
     console.log(`Connection successfuly established with IP: ${ipAddress} on PORT: 50541`);
     conn.write("Name: m8y");
   });
+
+  conn.on("end", () => {
+    console.log("The server has terminated your connection...")
+    process.exit();
+  });
   
 
   return conn;
