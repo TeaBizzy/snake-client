@@ -1,5 +1,3 @@
-const { ReadStream } = require("fs");
-
 let connection; // Stores our connection to the server so we can send it data from our inputs.
 
 let currentDirection;
@@ -13,7 +11,7 @@ const setupInput = function(conn) {
   stdin.resume;
   
   // Setup the connection reference
-  connection = conn
+  connection = conn;
   
   // Register for the "data" event
   stdin.on("data", handleUserInput);
@@ -30,12 +28,12 @@ const movePlayer = function(newDirection) {
 
   currentDirection = newDirection;
   clearInterval(currentInterval);
-  currentInterval = setInterval(() => connection.write(`Move: ${currentDirection}`), 75)
+  currentInterval = setInterval(() => connection.write(`Move: ${currentDirection}`), 75);
 };
 
 
 const sendMessage = function(data) {
-  connection.write(`Say: ${data}`)
+  connection.write(`Say: ${data}`);
 };
 
 // Determines what to do with user input
@@ -45,16 +43,16 @@ const handleUserInput = function(key) {
     process.exit();
   }
 
-  if(key === "y") {
-    sendMessage("Lets GOOOO!")
+  if (key === "y") {
+    sendMessage("Lets GOOOO!");
   }
 
-  if(key === "t") {
-    sendMessage("Watch out!")
+  if (key === "t") {
+    sendMessage("Watch out!");
   }
 
-  if(key === "u") {
-    sendMessage("I'm coming for you!")
+  if (key === "u") {
+    sendMessage("I'm coming for you!");
   }
   movePlayer(key);
 };

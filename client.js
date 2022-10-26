@@ -1,5 +1,5 @@
 const net = require("net");
-const {IP, PORT} = require("./constants")
+const {IP, PORT} = require("./constants");
 
 // Establishes a connection with the game server
 const connect = function(name, ipAddress) {
@@ -25,7 +25,7 @@ const connect = function(name, ipAddress) {
   });
 
   conn.on("end", () => {
-    console.log("The server has terminated your connection...")
+    console.log("The server has terminated your connection...");
     process.exit();
   });
   
