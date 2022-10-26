@@ -1,5 +1,8 @@
 let connection; // Stores our connection to the server so we can send it data from our inputs.
 
+let currentDirection;
+let currentInterval;
+
 // Initializes capturing of user input
 const setupInput = function(conn) {
   const stdin = process.stdin;
@@ -18,13 +21,14 @@ const setupInput = function(conn) {
 };
 
 // Moves the player in the given direction
-const movePlayer = function(direction) {
+const movePlayer = function(newDirection) {
   // If input given isn't valid just return!
-  if (direction !== "w" && direction !== "a" && direction !== "s" && direction !== "d") {
+  if (newDirection !== "w" && newDirection !== "a" && newDirection !== "s" && newDirection !== "d") {
     return;
   }
-
-  connection.write(`Move: ${direction}`); // Tell the server to move our snake!
+  currentDirection = newDirection;
+  clearInterval(currentInterval);
+  currentInterval = setInterval(() => connection.write(`Move: ${currentDirection}`), 75)
 };
 
 // Determines what to do with user input
